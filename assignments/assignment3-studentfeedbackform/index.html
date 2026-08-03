@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Feedback Form</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h2>Student Feedback Form</h2>
+
+    <form id="feedbackForm" novalidate>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name">
+        <div class="error" id="nameError"></div>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email">
+        <div class="error" id="emailError"></div>
+
+        <label for="course">Course</label>
+        <select id="course" name="course">
+            <option value="">Select Course</option>
+            <option value="HTML/CSS">HTML/CSS</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="Python">Python</option>
+            <option value="Data Structures">Data Structures</option>
+        </select>
+        <div class="error" id="courseError"></div>
+
+        <label for="feedback">Feedback</label>
+        <textarea id="feedback" name="feedback"></textarea>
+        <div class="error" id="feedbackError"></div>
+
+        <button type="submit">Submit Feedback</button>
+        <button type="button" id="deleteBtn">Delete Stored Data</button>
+    </form>
+
+    <div id="sessionUserBox">Current Session User: None</div>
+
+    <h3>Stored Feedback</h3>
+    <div id="storedFeedbackBox">No feedback stored.</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

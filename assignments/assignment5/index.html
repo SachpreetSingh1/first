@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Exam Result</title>
+</head>
+<body>
+    <h1>Online Exam Result</h1>
+    <button onclick="checkResult()">
+        Check Result
+    </button>
+    <p id="p"></p>
+
+    <script>
+        function calculateResult() {
+            // A Promise represents a result that will be available sometime in the future.
+            // Here, the Promise means:
+            // "I will give you the exam result later."
+            return new Promise(resolve => {
+                setTimeout(() => { // setTimeout() is used to simulate the exam system taking 3 seconds to calculate the result.
+                    resolve("Your result is ready! You scored 85 marks."); // resolve() means:
+                    // "The asynchronous work is completed."
+                    // We are sending the final result back to the function that is waiting for it.
+                }, 3000);
+            });
+        }
+
+        async function checkResult() {
+            // async means this function will work with Promises using await,
+            // and it automatically returns a Promise itself.
+            const para = document.getElementById("p");
+            para.innerText = "Calculating your result..."; // Display a message immediately
+
+            const result = await calculateResult();
+            // calculateResult() returns a Promise.
+            // await means: "Wait for this Promise to finish and give me its final result."
+            // The checkResult() function pauses at this line until the Promise is completed.
+            // NOTE :
+            // The entire browser does NOT freeze.
+            // Only this async function waits for the result.
+            // After 3 seconds, the Promise is resolved.
+            // The result will contain: "Your result is ready! You scored 85 marks."
+
+            para.innerText = result; // Display the result after 3 seconds
+        }
+    </script>
+</body>
+</html>

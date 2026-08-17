@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Movie Ticket Booking System</title>
+</head>
+<body>
+    <h1>Online Movie Ticket Booking System</h1>
+    <script>
+        console.log("1. Checking Seat Availability...");
+
+        let seatsAvailable = true;
+
+        let booking = new Promise(function(resolve, reject) {
+            setTimeout(function() {
+                if (seatsAvailable) {
+                    resolve("2. Seats Available - Booking Initiated");
+                } else {
+                    reject("No Seats Available");
+                }
+            }, 2000);
+        });
+// We are saying:
+// "Pretend that checking seat availability takes 2 seconds."
+// After 2 seconds, JavaScript checks:
+// let seatsAvailable = true;
+// Since it is true:
+// resolve("2. Seats Available - Booking Initiated");
+// is executed.
+// So the Promise becomes:
+// Pending
+//    ↓
+// Fulfilled
+
+        // Promise Chaining
+        booking
+            // First .then() - Check Seat Availability (result of the promise)
+            .then(function(message) {
+                console.log(message);
+                // Returning value to next .then()
+                return "3. Processing Payment...";
+            })
+            // Second .then() - Process Payment
+            .then(function(message) {
+                console.log(message);
+                return "4. Payment Successful";
+            })
+            // Third .then() - Confirm Booking
+            .then(function(message) {
+                console.log(message);
+                return "5. Booking Confirmed";
+            })
+            // Fourth .then() - Generate Ticket
+            .then(function(message) {
+                console.log(message);
+                return "6. Ticket Generated Successfully";
+            })
+            // Fifth .then() - Final confirmation
+            .then(function(message) {
+                console.log(message);
+                console.log("7. Enjoy Your Movie!");
+            })
+            // Handling errors
+            .catch(function(error) {
+                console.log("Error:", error);
+            });
+    </script>
+</body>
+</html>
